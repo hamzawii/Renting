@@ -5,10 +5,15 @@ Renting is an Open Source Android Application that allows developers to easily m
 #Features
 
 Here is a list of features that are already developed:
+
 Google Maps to locate vehicles.
+
 Google + like animation
+
 Two sliding menus, left and right menus
+
 Offline mode: saves all data in Shared Preferences so it can be used even without internet connection
+
 Connection Detector class, that detects if the user is connected to internet or not.
 
 #External Libs in Use
