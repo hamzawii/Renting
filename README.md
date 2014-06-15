@@ -25,3 +25,9 @@ Sugared-list-animations: https://github.com/cuub/sugared-list-animations
 Sliding Menu lib: https://github.com/jfeinstein10/SlidingMenu
 
 For any additional information you can mail me: hamza.guitouni@gmail.com
+
+#video demo
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=fwHvvNkYJH4
+" target="_blank"><img src="http://img.youtube.com/vi/fwHvvNkYJH4/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="480" height="360" border="10" /></a>
