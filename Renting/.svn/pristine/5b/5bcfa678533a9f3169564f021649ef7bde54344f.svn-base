@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lucky</string>
+    <string name="connextion_title">Connnexion Internet !</string>
+    <string name="connextion_body">Veuillez verifier que vous etes connecter à Internet, si vous ne disposer pas d\'une connexion, un mode hors ligne sera lancer.</string>
+    <string name="dialog_do_not_show_again">oui je sais ça</string>
+
+</resources>

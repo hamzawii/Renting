@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_ciel">#1986FF</color>
+    <color name="blue_logo">#298cca</color>
+    <color name="orange_logo">#F5B133</color>
+    <color name="orange_logo_claire">#ffbb00</color>
+    
+    <!-- Main activity colors -->
+    <color name="main_gris_bg">#eeeeee</color>
+    <color name="main_gris_bg_border">#dddddd</color>
+</resources>

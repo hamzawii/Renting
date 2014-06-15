@@ -1,0 +1,71 @@
+package com.example.lucky;
+
+
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.animation.Interpolator;
+
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.CanvasTransformer;
+
+public class Menu {
+	
+	private static SlidingMenu menu;
+	
+	public static int width = 0; 
+
+	private static Interpolator interp = new Interpolator() {
+		@Override
+		public float getInterpolation(float t) {
+			t -= 1.0f;
+			return t * t * t + 1.0f;
+		}		
+	};
+	
+	public static CanvasTransformer getSlideAnimation()
+	{
+		return new CanvasTransformer() {
+			@Override
+			public void transformCanvas(Canvas canvas, float percentOpen) {
+				canvas.translate(0, canvas.getHeight()*(1-interp.getInterpolation(percentOpen)));
+			}			
+		};
+	}
+	
+	public static CanvasTransformer getICSAnimation()
+	{
+		return new CanvasTransformer() {
+			@Override
+			public void transformCanvas(Canvas canvas, float percentOpen) {
+				float scale = (float) (percentOpen*0.25 + 0.75);
+				canvas.scale(scale, scale, canvas.getWidth()/2, canvas.getHeight()/2);
+			}
+		};
+	}
+	
+	public static SlidingMenu getMenu(Activity activity)
+	{
+		int size = 520, marg = 50;
+		if(width == 0)	
+			width = activity.getWindowManager().getDefaultDisplay().getWidth();
+		//small screens
+		if(width < size)
+		{
+			size = (int) Math.floor(width*0.9);
+			marg = 25;
+		}
+		
+		menu = new SlidingMenu(activity);
+        menu.setMode(SlidingMenu.LEFT);
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+        menu.setTouchmodeMarginThreshold(marg);
+        menu.attachToActivity(activity, SlidingMenu.SLIDING_CONTENT);
+        menu.setMenu(R.layout.menu);
+        //menu.setBehindOffset(100);
+        menu.setBehindWidth(size);
+        menu.setBehindScrollScale(0.0f);
+        menu.setBehindCanvasTransformer(Menu.getSlideAnimation());
+        return menu;
+	}
+	
+}

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_actionbar_height"
+        android:orientation="horizontal" 
+        android:gravity="center_vertical"
+        android:background="@color/blue_logo">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="@dimen/voiture_width"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/voiture1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mon compte"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text="Vous n'etes pas connecté"
+                android:textSize="11dp" />
+        </LinearLayout>
+    </LinearLayout>
+    
+    
+
+    
+    <!-- Connexion -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp" 
+        android:gravity="center_vertical"
+        android:background="@drawable/main_bg_border">
+
+        <TextView
+            android:id="@+id/menu_connexion_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue800"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connexion"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+    
+    
+    <!-- Inscription -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp" 
+        android:gravity="center_vertical"
+        android:background="@drawable/main_bg_border">
+
+        <TextView
+            android:id="@+id/menu_inscription_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue801"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inscription"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+    
+    
+    <!-- Paramétres -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp" 
+        android:gravity="center_vertical"
+        android:background="@drawable/main_bg_border">
+
+        <TextView
+            android:id="@+id/menu_params_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue801"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paramétres"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+    
+    
+    <!-- Comment ça marche -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp" 
+        android:gravity="center_vertical"
+        android:background="@drawable/main_bg_border">
+
+        <TextView
+            android:id="@+id/menu_comment_ca_marche_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue801"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/TextView22"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comment ça marche"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+    
+    
+    <!-- A propos -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp" 
+        android:gravity="center_vertical"
+        android:background="@drawable/main_bg_border">
+
+        <TextView
+            android:id="@+id/menu_propos_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue801"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/TextView23"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A propos"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+    
+    
+    
+    <!-- Quitter -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp" 
+        android:gravity="center_vertical"
+        android:background="@drawable/main_bg_border">
+
+        <TextView
+            android:id="@+id/menu_quitter_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue801"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/TextView23"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quitter"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+    
+</LinearLayout>

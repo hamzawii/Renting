@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <!-- Main activity -->
+    <dimen name="main_actionbar_height">55dp</dimen>
+    <dimen name="slid_menu_height">80dp</dimen>
+    
+    <dimen name="voiture_width">80dp</dimen>
+    
+    <dimen name="main_btn_voir_width">52dp</dimen>
+    <dimen name="main_btn_voir_height">32dp</dimen>
+
+</resources>

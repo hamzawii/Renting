@@ -1,0 +1,186 @@
+package com.example.lucky;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.cuubonandroid.sugaredlistanimations.SpeedScrollListener;
+import com.example.lucky.entity.LesTrajets;
+import com.example.luckyutils.Common;
+import com.example.luckyutils.ConnectionDetector;
+import com.example.luckyutils.HttpHelper;
+import com.example.luckyutils.SharedPref;
+import com.example.luckyutils.Urls;
+import com.google.android.gcm.GCMRegistrar;
+import com.google.gson.Gson;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
+public class MainActivity extends Activity {
+
+	SlidingMenu menu;
+	long touchTime;
+	TextView searchT, menuT; // textviews
+	LayoutInflater inflater;
+	LesTrajets lesTrajets;
+	private SpeedScrollListener listener;
+	private MainAdapter adapter;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		inflater = (LayoutInflater) this
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+		// init common font
+		if (Common.font == null) {
+			Common.font = Typeface.createFromAsset(getAssets(), "fontello.ttf");
+		}
+
+		// GCM
+		GCMRegistrar.checkDevice(this);
+		GCMRegistrar.unregister(this);
+
+		GCMRegistrar.checkManifest(this);
+
+		if (GCMRegistrar.isRegistered(this)) {
+			Log.d("GCM", "vous etes enregistrer");
+			Log.d("GCM", "Reg id = " + GCMRegistrar.getRegistrationId(this));
+		}
+		final String regId = GCMRegistrar.getRegistrationId(this);
+		if (regId.equals("")) {
+			// replace this with the project ID
+			GCMRegistrar.register(this, Common.MY_PROJECT_ID);
+			Log.d("info", GCMRegistrar.getRegistrationId(this));
+		} else {
+			Log.d("info", "already registered as" + regId);
+		}
+
+		searchT = (TextView) findViewById(R.id.search_action);
+		menuT = (TextView) findViewById(R.id.menu_action);
+
+		// set action bar icons
+		menuT.setTypeface(Common.font);
+		searchT.setTypeface(Common.font);
+		menuT.setOnClickListener(click);
+		searchT.setOnClickListener(click);
+
+		ConnectionDetector.testConnexion(this);
+
+		new GetTrajetTask().execute();
+
+		menu = Menu.getMenu(this);
+	}
+
+	private class GetTrajetTask extends AsyncTask<Void, Void, LesTrajets> {
+		ProgressDialog dialog;
+
+		@Override
+		protected void onPreExecute() {
+			dialog = new ProgressDialog(MainActivity.this);
+			dialog.setMessage("Chargement en cours ...");
+			dialog.show();
+			super.onPreExecute();
+		}
+
+		@Override
+		protected LesTrajets doInBackground(Void... params) {
+			String jsonRes = "";
+			LesTrajets res = null;
+			HttpClient client = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(Urls.listTrajets);
+			try {
+				HttpResponse response = client.execute(httppost);
+				jsonRes = (HttpHelper.request(response));
+				jsonRes = jsonRes.substring(0, jsonRes.indexOf("<!--"));
+
+				Gson gson = new Gson();
+				// Log.d("trajet",jsonRes+"");
+				res = gson.fromJson(jsonRes, LesTrajets.class);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+			// si reponse du serveur non null & ok, on la stocke pour pouvoir l'utiliser en mode hors ligne
+			if (res != null && res.getLesTrajets().size() > 0)
+				SharedPref.SavelesTrajects(getApplicationContext(), res);
+			return res;
+		}
+
+		@Override
+		protected void onPostExecute(LesTrajets res) {
+			if (dialog.isShowing())
+				dialog.dismiss();
+			lesTrajets = res;
+			// si la reponse du serveur est nulle ou pas de connexion, on utilise le mode hors ligne
+			if (lesTrajets == null) {
+				lesTrajets = SharedPref.getlesTrajects(getApplicationContext());
+			}
+
+			if (lesTrajets != null) // s'il y a des données a afficher
+			{
+//				MainAdapter adapter = new MainAdapter(MainActivity.this,
+//						lesTrajets);
+				ListView listView = (ListView) findViewById(R.id.main_listview);
+				//listView.setAdapter(adapter);
+				listener = new SpeedScrollListener();
+				listView.setOnScrollListener(listener);
+			    adapter = new MainAdapter(MainActivity.this, listener,lesTrajets);
+			    listView.setAdapter(adapter);
+			}
+
+			super.onPostExecute(lesTrajets);
+		}
+	}
+
+	OnClickListener click = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			if (v.getId() == R.id.menu_action) {
+				menu.toggle();
+			}
+		}
+	};
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent keyEvent) {
+
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+			if (menu.isMenuShowing()) {
+				menu.showContent(true);
+			} else {
+				long newtouchTime = System.currentTimeMillis();
+				if (touchTime == 0 || newtouchTime - touchTime > 1000) {
+					Toast.makeText(getApplicationContext(),
+							"Press back key again to exit", 400).show();
+					touchTime = System.currentTimeMillis();
+				} else
+					finish();
+			}
+		}
+
+		if (keyCode == KeyEvent.KEYCODE_MENU) {
+			menu.toggle(true);
+		}
+		return true;
+	}
+
+}

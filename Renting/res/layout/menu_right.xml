@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_actionbar_height"
+        android:orientation="horizontal" 
+        android:gravity="center_vertical"
+        android:background="@color/orange_logo">
+
+        <TextView
+            android:id="@+id/menu_searsh_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue801"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="entrer une destination, une date,..."
+            android:background="@drawable/main_bg_border"
+            android:layout_marginRight="6dp">
+            <requestFocus />
+        </AutoCompleteTextView>
+
+    </LinearLayout>
+    
+    
+
+    
+    <!-- Connexion -->
+    
+    
+    <!-- Inscription -->
+    
+    
+    <!-- Paramétres -->
+    
+    
+    <!-- Comment ça marche -->
+    
+    
+    <!-- A propos -->
+    
+    
+    
+    <!-- Quitter -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp" 
+        android:layout_margin="8dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/main_bg_border">
+
+        <TextView
+            android:id="@+id/menu_quitter_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\ue801"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+    
+</LinearLayout>
