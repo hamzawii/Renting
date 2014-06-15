@@ -14,5 +14,8 @@ Connection Detector class, that detects if the user is connected to internet or 
 #External Libs in Use
 
 Google maps: https://developers.google.com/maps/documentation/android/
+
 Sugared-list-animations: https://github.com/cuub/sugared-list-animations
+
 Sliding Menu lib: https://github.com/jfeinstein10/SlidingMenu
+
